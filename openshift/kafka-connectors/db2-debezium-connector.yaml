@@ -12,9 +12,12 @@ spec:
     database.history.kafka.bootstrap.servers: my-cluster-kafka-bootstrap:9092
     database.history.kafka.topic: cdc
     database.hostname: db2
-    database.include.list: db2inst1.department
     database.password: password
     database.port: 50000
     database.server.name: db2inst1
     database.user: db2inst1
+    transforms: Reroute
+    transforms.Reroute.type: io.debezium.transforms.ByLogicalTableRouter
+    transforms.Reroute.topic.regex: db2inst1.DB2INST1.(.*)
+    transforms.Reroute.topic.replacement: db2.$1
   tasksMax: 1
