@@ -1,0 +1,92 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: db2
+    app.kubernetes.io/component: db2
+    app.kubernetes.io/instance: db2
+    app.kubernetes.io/part-of: db2
+    app.openshift.io/runtime-namespace: db2
+  name: db2
+  namespace: db2
+spec:
+  progressDeadlineSeconds: 600
+  replicas: 1
+  revisionHistoryLimit: 10
+  selector:
+    matchLabels:
+      app: db2
+  strategy:
+    rollingUpdate:
+      maxSurge: 25%
+      maxUnavailable: 25%
+    type: RollingUpdate
+  template:
+    metadata:
+      labels:
+        app: db2
+        deploymentconfig: db2
+    spec:
+      containers:
+      - env:
+        - name: LICENSE
+          value: accept
+        - name: DB2INSTANCE
+          value: db2inst1
+        - name: DB2INST1_PASSWORD
+          value: password
+        - name: DBNAME
+          value: sample
+        - name: BLU
+          value: "false"
+        - name: ENABLE_ORACLE_COMPATIBILITY
+          value: "false"
+        - name: UPDATEAVAIL
+          value: "NO"
+        - name: SAMPLEDB
+          value: "true"
+        - name: REPODB
+          value: "false"
+        - name: IS_OSXFS
+          value: "false"
+        - name: PERSISTENT_HOME
+          value: "true"
+        - name: HADR_ENABLED
+          value: "false"
+        image: quay.io/debezium/db2-cdc:1.2
+        imagePullPolicy: Always
+        name: db2
+        ports:
+        - containerPort: 22
+          protocol: TCP
+        - containerPort: 50000
+          protocol: TCP
+        - containerPort: 55000
+          protocol: TCP
+        - containerPort: 60006
+          protocol: TCP
+        - containerPort: 60007
+          protocol: TCP
+        resources: {}
+        securityContext:
+          privileged: true
+        terminationMessagePath: /dev/termination-log
+        terminationMessagePolicy: File
+        volumeMounts:
+        - mountPath: /database
+          name: db2-1
+        - mountPath: /hadr
+          name: db2-2
+      dnsPolicy: ClusterFirst
+      hostname: db2server
+      restartPolicy: Always
+      schedulerName: default-scheduler
+      securityContext: {}
+      serviceAccount: db2
+      serviceAccountName: db2
+      terminationGracePeriodSeconds: 30
+      volumes:
+      - emptyDir: {}
+        name: db2-1
+      - emptyDir: {}
+        name: db2-2

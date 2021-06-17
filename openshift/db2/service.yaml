@@ -1,0 +1,38 @@
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: db2
+    app.kubernetes.io/component: db2
+    app.kubernetes.io/instance: db2
+    app.kubernetes.io/part-of: db2
+    app.openshift.io/runtime-version: latest
+  name: db2
+  namespace: db2
+spec:
+  ports:
+  - name: 22-tcp
+    port: 22
+    protocol: TCP
+    targetPort: 22
+  - name: 50000-tcp
+    port: 50000
+    protocol: TCP
+    targetPort: 50000
+  - name: 55000-tcp
+    port: 55000
+    protocol: TCP
+    targetPort: 55000
+  - name: 60006-tcp
+    port: 60006
+    protocol: TCP
+    targetPort: 60006
+  - name: 60007-tcp
+    port: 60007
+    protocol: TCP
+    targetPort: 60007
+  selector:
+    app: db2
+    deploymentconfig: db2
+  sessionAffinity: None
+  type: ClusterIP

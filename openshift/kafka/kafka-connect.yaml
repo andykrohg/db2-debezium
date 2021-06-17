@@ -1,0 +1,16 @@
+apiVersion: kafka.strimzi.io/v1beta2
+kind: KafkaConnect
+metadata:
+  annotations:
+    strimzi.io/use-connector-resources: 'true'
+  name: my-connect-cluster
+  namespace: db2
+spec:
+  bootstrapServers: my-cluster-kafka-bootstrap:9093
+  image: quay.io/akrohg/debezium-db2connect:latest
+  replicas: 1
+  tls:
+    trustedCertificates:
+    - certificate: ca.crt
+      secretName: my-cluster-cluster-ca-cert
+  version: 2.7.0

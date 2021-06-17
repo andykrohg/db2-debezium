@@ -1,0 +1,14 @@
+apiVersion: kafka.strimzi.io/v1beta2
+kind: KafkaConnector
+metadata:
+  name: postgresql-sink-connector
+  namespace: db2
+  labels:
+    strimzi.io/cluster: my-connect-cluster
+spec:
+  class: io.confluent.connect.jdbc.JdbcSinkConnector
+  config:
+    auto.create: true
+    connection.url: jdbc:postgresql://postgresql:5432/sampledb?user=user46F&password=Xx436PW1ujWUbuyQ
+    topics: db2inst1.DB2INST1.DEPARTMENT
+  tasksMax: 2
