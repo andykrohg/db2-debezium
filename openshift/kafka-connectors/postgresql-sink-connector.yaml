@@ -10,7 +10,7 @@ spec:
   config:
     auto.create: true
     connection.url: jdbc:postgresql://postgresql:5432/sampledb?user=userOY8&password=XHNSh4vlGX5viVsR
-    topics.regex: public.*
+    topics.regex: public(.)*
     transforms: unwrap
     transforms.unwrap.type: io.debezium.transforms.ExtractNewRecordState
   tasksMax: 2
