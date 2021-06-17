@@ -19,5 +19,5 @@ spec:
     transforms: Reroute
     transforms.Reroute.type: io.debezium.transforms.ByLogicalTableRouter
     transforms.Reroute.topic.regex: db2inst1.DB2INST1.(.*)
-    transforms.Reroute.topic.replacement: db2.$1
+    transforms.Reroute.topic.replacement: public.$1
   tasksMax: 1
