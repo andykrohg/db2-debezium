@@ -2,7 +2,7 @@
 This repo houses collateral to demonstrate a data streaming pipeline using the Debezium DB2 connector as a source and the Kafka Connect Postgres connector as a sink.
 
 # How to deploy
-1. Deploy a DB2 database to OpenShift. These manifests will generate a dummy database called `sample`.
+1. Deploy a DB2 database to OpenShift. These manifests will generate a dummy database called `sample`. The image we're using (`quay.io/debezium/db2-cdc:1.2`) has already fulfilled the [prerequisites to setup Db2 for Debezium](https://debezium.io/documentation/reference/connectors/db2.html#setting-up-db2).
    ```bash
    oc new-project db2
    oc apply -k openshift/db2/
