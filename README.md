@@ -22,7 +22,7 @@ This repo houses collateral to demonstrate a data streaming pipeline using the D
    oc apply -f openshift/kafka/kafka.yaml
    oc apply -f openshift/kafka/kafka-connect.yaml
    ```
-7. Update line 12 in `openshift/kafka-connectors/postgresql-sink-connector` to use the correct username/password for postgres.
+7. Update **line 24** in `openshift/kafka-connectors/postgresql-sink-connector` to use the correct username/password for postgres.
 8. Create a `KafkaConnector` to start Debezium:
    ```bash
    oc apply -f openshift/kafka-connectors/db2-debezium-connector.yaml
