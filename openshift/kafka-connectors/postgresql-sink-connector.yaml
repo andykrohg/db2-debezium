@@ -8,9 +8,29 @@ metadata:
 spec:
   class: io.confluent.connect.jdbc.JdbcSinkConnector
   config:
+    # Automatically create schema in destination postgres database
     auto.create: true
+
+    # Use INSERT .. ON CONFLICT UPDATE
+    insert.mode: upsert
+
+    # Specify where to look for primary keys for proper handling of
+    # UPDATE/DELETE
+    pk.mode: record_key
+    pk.fields: ID
+    delete.enabled: true
+
+    # Connection URL for Postgres
     connection.url: jdbc:postgresql://postgresql:5432/sampledb?user=userOY8&password=XHNSh4vlGX5viVsR
+
+    # Filter kafka topics to apply to this sink connector
     topics.regex: public(.)*
+
+    # Debezium change events come wrapped in a STRUCT, so we need to extract the payload
+    # to build INSERT/UPDATE/DELETE statements. Also, be sure to preserve DELETE and tombstone
+    # events to ensure deletions behave correctly.
     transforms: unwrap
     transforms.unwrap.type: io.debezium.transforms.ExtractNewRecordState
+    transforms.unwrap.drop.tombstones: false
+    transforms.unwrap.drop.deletes: false
   tasksMax: 2

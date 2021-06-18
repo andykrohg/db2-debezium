@@ -8,16 +8,30 @@ metadata:
 spec:
   class: io.debezium.connector.db2.Db2Connector
   config:
+    # Connection info for the DB2 database. Here we're simply using the OpenShift Service
     database.dbname: sample
-    database.history.kafka.bootstrap.servers: my-cluster-kafka-bootstrap:9092
-    database.history.kafka.topic: cdc
     database.hostname: db2
     database.password: password
     database.port: 50000
     database.server.name: db2inst1
     database.user: db2inst1
+
+    # Provide kafka server address and topic name to track cdc history
+    database.history.kafka.bootstrap.servers: my-cluster-kafka-bootstrap:9092
+    database.history.kafka.topic: cdc
+
+    # Comma-separated list of tables to capture
+    table.whitelist: DB2INST1.PRODUCTS,DB2INST1.CUSTOMERS,DB2INST1.ORDERS
+    # Comma-separated list of columns (schemaName.tableName.columnName) to exlude from data capture.
+    # column.blacklist: DB2INST1.PRODUCTS.DESCRIPTION,DB2INST1.ORDERS.ORDER_DATE
+
+    # Default topic name is database.schema.TABLENAME. Use transforms to modify or consolidate
+    # multiple tables to the same topic.
     transforms: Reroute
     transforms.Reroute.type: io.debezium.transforms.ByLogicalTableRouter
     transforms.Reroute.topic.regex: db2inst1.DB2INST1.(.*)
     transforms.Reroute.topic.replacement: public.$1
+
+    # Send a heartbeat to Kafka once per second
+    heartbeat.interval.ms: 1000
   tasksMax: 1
