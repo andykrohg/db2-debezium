@@ -1,7 +1,7 @@
 # DB2 to Postgres Kafka Demo
 This repo houses collateral to demonstrate a data streaming pipeline using the Debezium DB2 connector as a source and the Kafka Connect Postgres connector as a sink.
 
-# How to deploy
+## How to deploy
 1. Deploy a DB2 database to OpenShift. These manifests will generate a dummy database called `sample`. The image we're using (`quay.io/debezium/db2-cdc:1.2`) has already fulfilled the [prerequisites to setup Db2 for Debezium](https://debezium.io/documentation/reference/connectors/db2.html#setting-up-db2).
    ```bash
    oc new-project db2
@@ -38,7 +38,9 @@ This repo houses collateral to demonstrate a data streaming pipeline using the D
    ```bash
    oc apply -f openshift/kafka-connectors/postgresql-sink-connector
    ```
-11. Observe that the `CUSTOMERS`, `ORDERS`, and `PRODUCTS` tables have been created and populated with the base dataset in Postgres:
+
+## Running the Demo
+1. Observe that the `CUSTOMERS`, `ORDERS`, and `PRODUCTS` tables have been created and populated with the base dataset in Postgres:
    ```bash
    oc rsh $(oc get pod -l name=postgresql -o name) psql sampledb -c \\dt
    ```
@@ -63,7 +65,7 @@ This repo houses collateral to demonstrate a data streaming pipeline using the D
     1004 | Anne       | Kretchmar | annek@noanswer.org
    ```
 
-12. In a new Terminal, add a new row to the `CUSTOMERS` table in the **DB2 Database**:
+2. In a new Terminal, add a new row to the `CUSTOMERS` table in the **DB2 Database**:
    ```bash
    oc rsh $(oc get pod -l app=db2 -o name) su - db2inst1
    ```
@@ -74,10 +76,10 @@ This repo houses collateral to demonstrate a data streaming pipeline using the D
    db2 "INSERT INTO CUSTOMERS (FIRST_NAME, LAST_NAME, EMAIL) VALUES ('Andy', 'Krohg', 'akrohg@redhat.com')"
    ```
 
-13. In the Postgres terminal (after a moment), observe that the new row appears in the `CUSTOMERS` table:
+3. In the Postgres terminal (after a moment), observe that the new row appears in the `CUSTOMERS` table:
    ```bash
    oc rsh $(oc get pod -l name=postgresql -o name) psql sampledb -c 'select * from "CUSTOMERS";'
    ```
 
-14. Try an `UPDATE` and `DELETE` too :)
+4. Try an `UPDATE` and `DELETE` too :)
 
