@@ -20,6 +20,11 @@ spec:
     pk.fields: ID
     delete.enabled: true
 
+    # By default table names are derived from the name of the respective kafka topic. We could 
+    # override the name assigned to a table using this property, interpolating the topic
+    # name with ${topic} 
+    # table.name.format: kafka_${topic}
+
     # Connection URL for Postgres
     connection.url: jdbc:postgresql://postgresql:5432/sampledb?user=userOY8&password=XHNSh4vlGX5viVsR
 
