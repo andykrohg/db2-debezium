@@ -43,7 +43,7 @@ This repo houses collateral to demonstrate a data streaming pipeline using the D
 ### Using the PostgreSQL Sink Connector
 1. Deploy a PostgreSQL Database using the ephemeral template in the Developer Catalog.
 
-2. Update **line 24** in `openshift/kafka-connectors/postgresql-sink-connector` to use the correct username/password for postgres.
+2. Update **line 24** in `openshift/kafka-connectors/postgresql-sink-connector.yaml` to use the correct username/password for postgres.
 
 3. Create a JDBC Sink `KafkaConnector` to execute change events against Postgres:
    ```bash
