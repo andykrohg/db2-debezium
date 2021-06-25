@@ -1,0 +1,23 @@
+apiVersion: kafka.strimzi.io/v1beta2
+kind: KafkaConnector
+metadata:
+  name: mongodb-sink-connector
+  namespace: db2
+  labels:
+    strimzi.io/cluster: my-connect-cluster
+spec:
+  class: com.mongodb.kafka.connect.MongoSinkConnector
+  config:
+    connection.uri: mongodb://my-replica-set-svc:27017/mongo-sample?replicaSet=my-replica-set&w=majority
+    database: mongo-sample
+    collection: default
+
+    # Filter kafka topics to apply to this sink connector
+    topics.regex: public(.)*
+
+    change.data.capture.handler: com.mongodb.kafka.connect.sink.cdc.debezium.rdbms.RdbmsHandler
+
+    namespace.mapper: com.mongodb.kafka.connect.sink.namespace.mapping.FieldPathNamespaceMapper
+    namespace.mapper.key.collection.field: __dbz__physicalTableIdentifier
+
+    tasksMax: 2
