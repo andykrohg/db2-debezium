@@ -1,4 +1,4 @@
-# Db2 to Postgres Kafka Demo
+# Zero Code Data Pipeline with the Db2 Debezium Connector
 This repo houses collateral to demonstrate a data streaming pipeline using the Debezium Db2 connector as a source and the Kafka Connect PostgreSQL and/or MongoDB connector as a sink.
 
 ## Setup
