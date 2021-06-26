@@ -82,8 +82,8 @@ This repo houses collateral to demonstrate a data streaming pipeline using the D
    ```
 3. Create an account or login at https://cloud.mongodb.com/. Ensure that you're a member of a **Cloud Manager** organization.
 4. Click **Kubernetes Setup** on the left pane, select **Create New API Keys**, and enter the operator pod's public IP into the **Access List Entry** field. Then click **Generate Key and YAML**, and apply the provided manifests to your cluster in the **db2** namespace. (You may need to remove the default namespace of **mongodb** from the manifests first.)
-5. Create a `Mongo DB Deployment` using the operator in the web console. Set **Cloud/Ops Manager credentials** to the `Secret` you just created (**organization-secret** is the default name), and accept all other defaults. This will create a `ReplicaSet` deployment name `my-replica-set` and register the instance to https://cloud.mongodb.com.
-6. Create a MongoDB Sink `KafkaConnector` to execute change events against Postgres:
+5. Create a `Mongo DB Deployment` using the operator in the web console. Set **Cloud/Ops Manager credentials** to the `Secret` you just created (**organization-secret** is the default name), and accept all other defaults. This will create a `ReplicaSet` deployment named `my-replica-set` and register the instance to https://cloud.mongodb.com.
+6. Create a MongoDB Sink `KafkaConnector` to execute change events against MongoDB:
    ```bash
    oc apply -f openshift/kafka-connectors/mongodb-sink-connector.yaml
    ```
