@@ -1,5 +1,5 @@
 # Zero Code Data Pipeline with the Db2 Debezium Connector
-This repo houses collateral to demonstrate a data streaming pipeline using the Debezium Db2 connector as a source and the Kafka Connect PostgreSQL and/or MongoDB connector as a sink.
+This repo houses collateral to demonstrate a data streaming pipeline using the Debezium Db2 connector as a source and the Kafka Connect PostgreSQL and/or MongoDB connector as a sink, with everything running on OpenShift Container Platform. The intended use case is to stream both existing data and future change events from a Db2 database to some other data source. Using existing plugins to allow **Kafka Connect** to integrate with Db2, Postgres, and Mongo DB, this data pipeline replicates Db2 data with configuration alone, not requiring a single line of custom application code.
 
 ## Setup
 ### Kafka and Debezium
