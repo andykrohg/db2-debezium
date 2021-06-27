@@ -75,7 +75,7 @@ This repo houses collateral to demonstrate a data streaming pipeline using the D
    ```bash
    oc exec -n db2 $(oc -n db2 get pod -o name --field-selector spec.serviceAccountName=mongodb-enterprise-operator) -- curl -s ifconfig.me && echo
    ```
-3. Create an account or login at https://cloud.mongodb.com/. Ensure that you're a member of a **Cloud Manager** organization.
+3. Create an account or login at https://cloud.mongodb.com/. Ensure that you're a member of a **Cloud Manager** organization.<br/>
    ![Cloud Manager Organization](images/cloud-manager.png)
 4. Click **Kubernetes Setup** on the left pane, select **Create New API Keys**, and enter the operator pod's public IP into the **Access List Entry** field. Then click **Generate Key and YAML**, and apply the provided manifests to your cluster in the **db2** namespace. (You may need to remove the default namespace of **mongodb** from the manifests first.)
    ![Kubernetes Setup](images/kube-setup.png)
