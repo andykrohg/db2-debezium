@@ -26,7 +26,7 @@ spec:
     # table.name.format: kafka_${topic}
 
     # Connection URL for Postgres
-    connection.url: jdbc:postgresql://postgresql:5432/sampledb?user=userOY8&password=XHNSh4vlGX5viVsR
+    connection.url: jdbc:postgresql://postgresql:5432/sampledb?user=user1&password=password
 
     # Filter kafka topics to apply to this sink connector
     topics.regex: public(.)*

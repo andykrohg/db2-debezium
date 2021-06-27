@@ -21,9 +21,9 @@ spec:
     database.history.kafka.topic: cdc
 
     # Comma-separated list of tables to capture
-    table.whitelist: DB2INST1.PRODUCTS,DB2INST1.CUSTOMERS,DB2INST1.ORDERS
+    table.include.list: DB2INST1.PRODUCTS,DB2INST1.CUSTOMERS,DB2INST1.ORDERS
     # Comma-separated list of columns (schemaName.tableName.columnName) to exlude from data capture.
-    # column.blacklist: DB2INST1.PRODUCTS.DESCRIPTION,DB2INST1.ORDERS.ORDER_DATE
+    # column.exclude.list: DB2INST1.PRODUCTS.DESCRIPTION,DB2INST1.ORDERS.ORDER_DATE
 
     # Default topic name is database.schema.TABLENAME. Use transforms to modify or consolidate
     # multiple tables to the same topic.

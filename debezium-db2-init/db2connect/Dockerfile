@@ -1,4 +1,4 @@
-FROM registry.redhat.io/amq7/amq-streams-kafka-26-rhel7:1.6.0
+FROM strimzi/kafka:0.18.0-kafka-2.5.0
 
 USER root:root
 COPY ./plugins/ /opt/kafka/plugins/
