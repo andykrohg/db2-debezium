@@ -34,6 +34,14 @@ This repo houses collateral to demonstrate a data streaming pipeline using the D
    kafkatopic.kafka.strimzi.io/public.orders---a03e6c4934252138bb668faa61013d62a0ab0b3a
    kafkatopic.kafka.strimzi.io/public.products---14d984dfd09e2a40f4d1929c00b6bb41eb11adfa
    ```
+7. You can also view messages by using the `kafka-console-consumer.sh` script in one of your Kafka broker containers:
+   ```bash
+   oc exec -it my-cluster-kafka-0 -- /opt/kafka/bin/kafka-console-consumer.sh \
+      --bootstrap-server localhost:9092 \
+      --from-beginning \
+      --max-messages=4 \
+      --topic public.CUSTOMERS > customers.json
+   ```
 ### Using the PostgreSQL Sink Connector
 1. Deploy a PostgreSQL Database using the ephemeral template:
    ```bash
