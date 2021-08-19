@@ -53,7 +53,7 @@ spec:
           value: "true"
         - name: HADR_ENABLED
           value: "false"
-        image: quay.io/debezium/db2-cdc:1.2
+        image: quay.io/akrohg/db2-cdc
         imagePullPolicy: Always
         name: db2
         ports:
